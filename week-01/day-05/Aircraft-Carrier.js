@@ -1,5 +1,5 @@
 class Aircraft{
-    constructor(type, ammo, baseDamage,maxAmmo, priority){
+    constructor(type, ammo, baseDamage, maxAmmo, priority){
         this.type = type;
         this.ammo = ammo;
         this.baseDamage = baseDamage;
@@ -15,6 +15,9 @@ class Aircraft{
     }
     refill(number){
         var remain;
+        if(number <= 0){
+            throw "Attention! There is no enough ammo!"
+        }
         if(this.ammo + number <= this.maxAmmo){
             this.ammo = this.ammo + number;
             remain = 0;
@@ -36,11 +39,7 @@ class Aircraft{
     isPriority(){
         return priority
     }
-
 }
-
-
-
 
 
 
@@ -60,40 +59,61 @@ class airCraftCarrier{
         for(var i = 0; i < this.list.length; i++){
             totalNeed = totalNeed + (this.list[i].maxAmmo-this.list[i].ammo);
         }
-
-        while(this.ammoAmount > 0){
-
-            if(this.ammoAmount >= totalNeed){
+        if(this.ammoAmount <= 0){
+            throw ""
+        }
+        if(this.ammoAmount >= totalNeed){
             for(var i = 0; i < array.length; i++){
              this.list[i].refill(this.ammoAmount);
              console.log()
             }
-        }else if(this.ammoAmount < totalNeed && this.ammoAmount > 0){
+        }else if(this.ammoAmount < totalNeed){
+    
             for(var i = 0; i < this.list.length; i++){
-                if(this.list[i].priority){
+                if(this.list[i].priority == true){
                     this.ammoAmount = this.list[i].refill(this.ammoAmount);
                 }else{
                     continue
                 }
+                //fill the second priority aircraft
+                if(this.ammoAmount > 0){
+                    if(this.list[i].priority == false){
+                        this.ammoAmount = this.list[i].refill(this.ammoAmount);
+                    }else{
+                        continue
+                    }
+                }
               }
             }
-        }
-    }
 
+        }
+    
     Damage(){
+		this.totalDamage = 0;
         for(var i = 0; i < this.list.length; i++){
-            this.totalDamage = this.totalDamage + this.list.allDamage;
+           this.totalDamage += this.list[i].allDamage ;
         }
-        return this.totalDamage
+        return this.totalDamage;
     }
 
-    // fight(airCraftCarrier){
-        
-
-    // }
+    fight(airCraftCarrier){
+        this.list.map(function(x){
+            x.ammo = 0;
+        })
+		// for(var i = 0; i < this.list.length; i++){
+		// 	this.list[i].fight();
+		// }
+        if(airCraftCarrier.HP > this.Damage()){
+			airCraftCarrier.HP -= this.Damage();
+        }else{
+            airCraftCarrier.HP = 0;
+        }
+    }
 
     getStatus(){
-        var printStatus = "HP: "+this.HP+", Aircraft count:"+ this.list.length+", Ammo Storage:" +this.ammoAmount+ ", Total damage:"+ this.Damage();
+		var printStatus = "";
+		this.HP>0?printStatus = "HP: "+this.HP+", Aircraft count:"+ this.list.length+", Ammo Storage:" +this.ammoAmount+ ", Total damage:"+ this.Damage():printStatus = "HP: "+this.HP+", Aircraft count:"+ this.list.length+", Ammo Storage:" +this.ammoAmount+ ", Total damage:"+ this.Damage()+" It's dead Jim "
+        // var printStatus = "HP: "+this.HP+", Aircraft count:"+ this.list.length+", Ammo Storage:" +this.ammoAmount+ ", Total damage:"+ this.Damage();
         console.log(printStatus);
 
         console.log("\nAircrafts:");
@@ -101,21 +121,16 @@ class airCraftCarrier{
             this.list[i].getStatus();
         }
     }
-      
-    
-        
-    
-
 
 }
 
 
 let craft1 = new Aircraft("F35",6, 20, 80, false);
 let craft2 = new Aircraft("F16", 10, 40, 100, true);
-// let craft1 = new Aircraft();
+let craft3 = new Aircraft();
 
 let carrier1 = new airCraftCarrier([],50, 5);
-
+let carrier2 = new airCraftCarrier([],50, 5);
 
 carrier1.add(craft1);
 carrier1.add(craft2);
@@ -123,6 +138,9 @@ carrier1.getStatus();
 
 craft1.fight();
 craft2.fight();
-
-carrier1.fill()
+carrier1.fight(carrier2);
 carrier1.getStatus();
+
+carrier1.fill();
+carrier1.getStatus();
+carrier2.getStatus();		
