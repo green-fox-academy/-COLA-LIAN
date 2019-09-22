@@ -2,7 +2,6 @@ let animal = {
     color:'white',
     bane:'zebra'
 
-
 }
 
 let obj = Object.create(animal);
