@@ -36,30 +36,34 @@ class BinarySearchTree implements Tree{
 
     remove(value: string): void{
         let current = this.root;
-        while (current.getData() == value) {
-            if(current.getData() > value){
+
+        while (current.getData() != value ) {
+            if(current.getData() > value && current != null){
                 current = current.left;
-            }else{
+            }else if(current.getData() < value && current != null){
                 current = current.right;
+            }else if(current == null){
+              return undefined
             }
-        }      
+        }           
         current = null;
     }
 
-    
+
     search(value: string): boolean{
         let current = this.root;
-        let found = false;
+        let found = true;
 
-        while (current.getData() == value) {
-            if(current.getData() > value){
+        while (current.getData() != value ) {
+            if(current.getData() > value && current != null){
                 current = current.left;
-            }else{
+            }else if(current.getData() < value && current != null){
                 current = current.right;
+            }else if(current == null){
+                found = false;
             }
         }      
-        return found
-        
+      return found
     }
 
 
