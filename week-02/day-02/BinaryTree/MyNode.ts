@@ -19,7 +19,7 @@ class MyNode{
 
 
     setLeft(node:MyNode){
-        this.left= node;
+        this.left = node;
         return this.left
     }    
     getLeft(){
@@ -28,7 +28,7 @@ class MyNode{
 
 
     setRight(node:MyNode){
-        this.right= node;
+        this.right = node;
         return this.right
     } 
     getRight(){

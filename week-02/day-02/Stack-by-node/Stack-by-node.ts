@@ -9,48 +9,68 @@ interface Stack {
 
 
 class MyStack implements Stack{
-    root: MyNode
+    tail: MyNode
 
-    setRoot(root:MyNode){
-        this.root = root;
+    setTail(tail:MyNode): void{
+        this.tail = tail;
     }
 
     empty():boolean{
-        if(this.root = null){
-            return true
-        }else{
-            return false
-        }
+        return this.tail === null
     }
 
     push(value: string): void{
         let newNode = new MyNode();
-        let current = this.root;
-
-        while(current.next != null){
-        current = current.getNext();
-         }
         newNode.setData(value);
-        current.next.setNext(newNode);
+
+        let current = this.tail;
+        current.setNext(newNode);
+        this.tail = current.next;
     }
 
-    pop(): string{
-        let current = this.root;
-        while(current.next != null){
-            current = current.getNext();
+    pop(): string{  
+        let value : string;
+
+        if(this.empty()){
+            value = "This stack is empty."
+        }else{
+            value = this.tail.getData();
+            this.tail.next = this.tail;
         }
-        let str = current.getData()
-        current.before.next = null;
-        return str
+        return value
+       
     }
 
     peek(): string{
-        if(this.root != null){
-            return this.root.getData()
-        }else{
-            return "This stack is empty"
-        }
+        let value :string;
+
+         if(this.empty()){
+             value = "This stack is empty."
+         }else{  
+            value = this.tail.data;
+         }
+         return value
     }
     
-
 }
+
+
+let tail = new MyNode();
+tail.setData("Hello root!");
+let myStack = new MyStack();
+myStack.setTail(tail);
+
+console.log(myStack.empty());
+console.log(myStack.peek());
+
+
+myStack.push("a");
+myStack.push("b");
+myStack.push("c");
+console.log(myStack.peek());
+
+myStack.push("How old are you?");
+console.log(myStack.peek());
+
+console.log(myStack.pop());
+console.log(myStack.peek());
