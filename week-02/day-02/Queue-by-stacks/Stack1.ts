@@ -7,10 +7,17 @@ interface Stack {
 
 class Stack1 implements Stack{
    array: string[];
+    size: number;
 
-    setStack(array:string[]){
-        this.array = array;
+    constructor(){
+        this.array = [];
     }
+
+    getSize(){
+        this.size = this.array.length;
+        return this.size
+    }
+
 
     empty(): boolean{
         if (this.array == []){
@@ -19,9 +26,10 @@ class Stack1 implements Stack{
             return false
         }    
     }
+
     push(value:string):void{
         this.array.push(value);
-        console.log(this.array);
+        // console.log(this.array);
     }
     pop(): string{
     return this.array.pop()
