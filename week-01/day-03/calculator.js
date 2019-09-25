@@ -17,6 +17,11 @@
 // Else print the result
 // Say goodbye
 
+
+function calculate(x, y, z){
+    
+}
+
 const args = process.argv.splice(2); // Just a helper for you to get started
 
 console.log('Input params are', args);

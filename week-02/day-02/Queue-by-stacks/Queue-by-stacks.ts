@@ -13,12 +13,23 @@ import { MyNode } from './MyNode';
 
 class MyQueue implements Queue{
     stack1: Stack1;
-    stack2: Stack2;
+    stack2: Stack1;
 
-    constructor(stack1: Stack1){
-       while(this.stack1.peek() != null){
-           this.stack2.push(this.stack1.pop());
+    // constructor(stack1: Stack1){
+    //     let tempStack = stack1;
+
+    //    while(tempStack.peek() != null){
+    //        this.stack2.push(tempStack.pop());
+    //    }
+    // }
+
+    reconstructor(stack:Stack1){
+        let tempStack = stack;
+
+       while(tempStack.peek() != null){
+           this.stack2.push(tempStack.pop());
        }
+       return this.stack2
     }
 
     empty(): boolean{
@@ -38,3 +49,11 @@ class MyQueue implements Queue{
     }
 
 }
+
+let array = ["1","2","3","4","5"];
+let stack = new Stack1();
+stack.setStack(array);
+
+
+let queue = new MyQueue();
+queue.reconstructor(stack);
