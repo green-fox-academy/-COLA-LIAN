@@ -18,7 +18,6 @@ class Stack1 implements Stack{
         return this.size
     }
 
-
     empty(): boolean{
         if (this.array == []){
             return true
@@ -31,6 +30,7 @@ class Stack1 implements Stack{
         this.array.push(value);
         // console.log(this.array);
     }
+    
     pop(): string{
     return this.array.pop()
     }
