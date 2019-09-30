@@ -7,8 +7,6 @@ let object = {
     'z': 29,
 }
 
-
-
  function max(obj) {
     let maxVal = 0;
     let maxObj = null;
