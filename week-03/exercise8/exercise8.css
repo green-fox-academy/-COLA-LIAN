@@ -1,0 +1,25 @@
+.class0{
+    width: 80%;
+    height: 140px;
+    margin-top: 20px;
+    border: 3px solid rgb(77,135,236);
+}
+.class1{
+    width:70px;
+    height: 70px;
+    background-color: rgb(77,135,236);
+    float: left;
+    margin-top: 3%;
+    margin-left: 3.5%;
+}
+.class2{
+    width:70px;
+    height: 70px;
+    background-color:rgb(89,54,111);
+    float: left;
+    margin-top: 3%;
+    margin-left: 3.5%;
+}
+#hi{
+    background-color:rgb(238,109,82);
+}

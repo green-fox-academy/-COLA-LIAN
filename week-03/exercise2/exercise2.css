@@ -1,0 +1,26 @@
+.class0{
+    padding: 16px;
+    width: 380px;
+    background-color: #4185f4;	
+}
+.class1{
+    /* width: 355px; */
+    height: 90px;
+    padding: 20px 0;
+    font-size: 36px;
+    color: #FFFFFF;	
+    text-align:center;
+    line-height: normal;
+}
+#north{
+    background-color: #e67676;
+}
+#east {
+    background-color: #f2f062;
+}
+#south {
+    background-color: #a9e6e6;
+}
+#west {
+    background-color: #7691e4;
+}
