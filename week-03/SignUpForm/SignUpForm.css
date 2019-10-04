@@ -1,0 +1,94 @@
+.background{
+    height: 100vh;
+    width: 100vw;
+    background-color:grey;
+}
+.form{
+    height: 80vh;
+    width: 80vw;
+    background-color: #ffffff;
+    float: left;
+    margin: 10vh 10vw;
+}
+.formLeft{
+    height: 80%;
+    width: 30%;
+    float: left;
+    margin: 5% 5%;
+}
+.formMiddle{
+    height:100px;
+    width: 100px;
+    background-color: #dddddd;
+    box-shadow: darkgrey 10px 5px 30px 5px;
+    border-radius: 50px;
+    float: left;
+    text-align: center;
+    line-height: 100px;
+    margin-top: 280px;
+    font-size: 30px;
+}
+.formRight{
+    height: 40%;
+    width: 30%;
+    float: left;
+    margin: 5% 5%;
+    margin-top: 300px;
+}
+#sign{
+    font-size: 20px;
+    height: 50px;
+    width: 180px; 
+    background-color: #499d86;
+    color: #ffffff;
+    margin-top: 40px;
+
+}
+.title{
+    font-size: 35px;
+    margin-bottom: 30px;
+    color: grey;
+}
+.word{
+    font-size: 15px;  
+}
+.input{
+    height: 50px;
+    width: 90%; 
+    border-style:none;
+    border-bottom-style:solid;
+    border-bottom-width:thin;
+    border-bottom-color:grey;
+}
+
+.input:focus{
+   outline: none;
+   border-bottom-color: #499d86;
+   border-bottom-style: solid;
+   border-bottom-width: 3px;
+
+}
+
+.forgot{
+    float: right;
+    margin-top: 0;
+}
+.link{
+    height: 40px;
+    width: 80%;
+    margin-top: 10px;
+    background-color: red;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    line-height: 40px;
+}
+#facebook{
+    background-color: #36518a;
+}
+#twitter{
+    background-color: #68ace8;
+}
+#google{
+    background-color: #ce5542;
+}
