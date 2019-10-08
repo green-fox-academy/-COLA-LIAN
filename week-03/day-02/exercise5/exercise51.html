@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <title>exercise5</title>
+    </head>
+	<body>
+        <div class="frame">
+            <div class="item" id="header"></div>
+            <div class="item" id="middle">
+                <div class="bar" id="left"></div>
+                <div class="bar" id="main">
+                    <div class="fixed"></div>
+                </div>
+                <div class="bar" id="right"></div>
+            </div>
+            <div class="item" id="footer"></div>
+        </div>
+               			
+	</body>
+</html>	
+
+<style>
+.frame{
+    width: 40vw;
+    height: 100vh;
+    margin:auto;
+}
+.item{
+    width: 100%;
+    height: 20%;
+}
+.bar{
+    width: 20%;
+    height: 100%;
+    background-color: orange;
+}
+.fixed{
+    width:50px;
+    height:50px;
+    background-color: #000000;
+    position: relative;
+    top:400px;
+    left:210px;
+}
+#header{
+    background-color: aqua;
+}
+#footer{
+    background-color: blue;
+}
+#right{
+    background-color: purple;
+}
+#middle{
+    height: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+#main{
+    width: 50%;
+    background-color: red;  
+}
+</style>
