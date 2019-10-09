@@ -1,0 +1,49 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: innerHTML, textContent</title>
+  </head>
+  <body>
+    <p class="apple">apple</p>
+    <p class="balloon">banana</p>
+    <p class="cat">car</p>
+    <p class="animals">goat rabbit <strong>cat</strong> dog</p>
+
+    <!-- You can work in the html or in a separate js file. Like:
+    <script>
+    1)  Fill every paragraph with the last one's content.
+    2)  Do the same again, but you should keep the cat strong.
+    </script> -->
+
+    <script>
+        let apple = document.querySelector('.apple').innerHTML;
+        let balloon = document.querySelector('.balloon').innerHTML;
+        let cat = document.querySelector('.cat').innerHTML;
+        let animalsText = document.querySelector('.animals').innerText;
+        let animalsHTML = document.querySelector('.animals').innerHTML;
+        
+        apple +=` ${animalsText}`;
+        balloon +=` ${animalsText}`;
+        cat +=` ${animalsText}`;
+        document.querySelector('.apple').innerHTML = apple;
+        document.querySelector('.balloon').innerHTML = balloon;
+        document.querySelector('.cat').innerHTML = cat;
+        console.log(document.querySelector('.apple').innerHTML );
+        console.log(document.querySelector('.balloon').innerHTML);
+        console.log( document.querySelector('.cat').innerHTML);
+
+
+        apple +=` ${animalsHTML}`;
+        balloon +=` ${animalsHTML}`;
+        cat +=` ${animalsHTML}`;
+        document.querySelector('.apple').innerHTML = apple;
+        document.querySelector('.balloon').innerHTML = balloon;
+        document.querySelector('.cat').innerHTML = cat;
+        console.log(document.querySelector('.apple').innerHTML );
+        console.log(document.querySelector('.balloon').innerHTML);
+        console.log( document.querySelector('.cat').innerHTML);
+    </script>
+
+
+  </body>
+</html>
