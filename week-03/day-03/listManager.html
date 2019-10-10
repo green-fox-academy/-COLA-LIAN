@@ -20,7 +20,6 @@
     5, Check all the edge cases, no error should be printed to the console
    -->
 
-
 <!-- <div class="frame">
     <div>bread</div>
     <div>milk</div>
@@ -55,7 +54,6 @@ button{
     padding:0;
 }
 </style>
-
 
    <script>
         let frame = document.createElement('div')
@@ -112,10 +110,8 @@ button{
         let btn = document.querySelector('button');
 
         let array1 = [0, 1, 2, 3];
-        //[1, 0, 2, 3]
         let array2 = [bread, milk, orange, tomato];
         let array3 = [];
-
 
         // document.querySelector('.food').addEventListener('click',function(){
         //     choose(document.querySelector('.food'));
@@ -128,7 +124,6 @@ button{
                 id = x.id;
             }
         })
-
         
         //Up
         let up = document.getElementById('btn1');
@@ -140,8 +135,6 @@ button{
                 let temp = array1[position];
                 array1[position] = array1[position-1];
                 array1[position-1] = temp;
-                // console.log(array1);
-
 
                 // frame.querySelector('.food').forEach((food) => {
                 //     food.removeChild(food);
@@ -151,23 +144,17 @@ button{
                     frame.removeChild(frame.childNodes[i]);
                 }
 
-                // frame.removeChild(document.querySelector('#bread'));
-                // frame.removeChild(document.querySelector('#milk'));
-                // frame.removeChild(document.querySelector('#orange'));
-                // frame.removeChild(document.querySelector('#tomato'));
-                
                 array1.forEach((number) => {
                     frame.appendChild(array2[number]);
                 });
             }
         };
 
-
-
         //Down
         let down = document.getElementById('btn4');
         down.onclick = () => {
-            if( array2.indexOf(document.getElementById(id)) != array1[3] ){
+            console.log("*******"+array1.length);
+            if( array2.indexOf(document.getElementById(id)) != array1[array1.length-1] ){
                 let position = array1.indexOf(array2.indexOf(document.getElementById(id)));       
                 let temp = array1[position];
                 array1[position] = array1[position+1];
@@ -181,8 +168,7 @@ button{
                 array1.forEach((number) => {
                     frame.appendChild(array2[number]);
                 });
-            }
-          
+            }       
         };
 
         // >
@@ -193,22 +179,27 @@ button{
             array1.splice(position,1);
             frame.removeChild(document.querySelector(`#${id}`));   
 
+            array2[0].onclick();
             array3.forEach((number) => {
                 frame3.appendChild(array2[number]);
             }); 
         }
 
+
         // X
         let cut = document.getElementById('btn3');
         cut.onclick = () =>{
             let position = array1.indexOf(array2.indexOf(document.getElementById(id)));
-            array3.push(array1[position]);
             array1.splice(position,1);
-
-            console.log(array1);
             frame.removeChild(document.querySelector(`#${id}`));   
 
+            console.log("array2"+ array2);
+            console.log(array2[0]);
+        
+            array2[0].onclick();
         }
+        
+        
 
    </script>
 </body>
