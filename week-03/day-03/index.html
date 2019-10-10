@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <title>List Manager</title>
+</head>
+<body>
+  <!-- Do not modify this file -->
+  <!--
+    1, Build up the necessary structure with JavaScript (try to use semantically correct elements)
+    2, Achive the same design by css
+    3, Try not to use css classes
+    4, Add some functionality to the buttons
+        - If "Up" is clicked the selection should move up by one
+        - If "Down" is clicked the selection should move down by one
+        - If "X" is clicked the selected item should be removed and the first item should be selected
+        - If ">" is clicked the selected item should be moved to the right side and the first item on the left side should be selected
+    5, Check all the edge cases, no error should be printed to the console
+   -->
+
+
+<!-- <div class="frame">
+    <div>bread</div>
+    <div>milk</div>
+    <div>orange</div>
+    <div>tomato</div>
+</div>
+<div class="frame" style="border-style: none">
+    <button id="up">Up</button>
+    <button>></button>
+    <button>X</button>
+    <button id="down">Down</button>
+</div>
+<div class="frame">   
+</div> -->
+
+
+<style>
+.frame{
+    width: 150px;
+    height: 90px;
+    border-width:1px;
+    border-style:solid;
+    border-color:#000000; 
+    float:left;
+    margin: 20px;
+}
+button{
+    width:100%;
+    height: 25%;
+    background-color: #e5e5e5;
+    margin:0;
+    padding:0;
+}
+</style>
+
+
+   <script>
+        let frame = document.createElement('div')
+        let frame2 = document.createElement('div')
+        let frame3 = document.createElement('div')
+        frame.className = "frame";
+        frame2.className = "frame";
+        frame3.className = "frame";
+        let body = document.querySelector('body');
+        body.appendChild(frame);
+        body.appendChild(frame2);
+        body.appendChild(frame3);
+
+    //construct frame
+        let bread = document.createElement('div');
+        let milk = document.createElement('div');
+        let orange = document.createElement('div');
+        let tomato = document.createElement('div');
+        bread.textContent = 'bread';
+        milk.textContent = 'milk';
+        orange.textContent = 'orange';
+        tomato.textContent = 'tomato';
+        bread.className = 'food';
+        milk.className = 'food';
+        orange.className = 'food';
+        tomato.className = 'food';
+        bread.id = 'bread';
+        milk.id = 'milk';
+        orange.id = 'orange';
+        tomato.id = 'tomato';
+        frame.appendChild(bread);
+        frame.appendChild(milk);
+        frame.appendChild(orange);
+        frame.appendChild(tomato);
+
+    //construct frame2
+        let btn1 = document.createElement('button');
+        let btn2 = document.createElement('button');
+        let btn3 = document.createElement('button');
+        let btn4 = document.createElement('button');
+        btn1.textContent = "Up";
+        btn2.textContent = ">";
+        btn3.textContent = "X";
+        btn4.textContent = "Down";
+        btn1.id = 'btn1';
+        btn2.id = 'btn2';
+        btn3.id = 'btn3';
+        btn4.id = 'btn4';
+        frame2.appendChild(btn1);
+        frame2.appendChild(btn2);
+        frame2.appendChild(btn3);
+        frame2.appendChild(btn4);
+        
+        let btn = document.querySelector('button');
+
+        let array1 = [0, 1, 2, 3];
+        //[1, 0, 2, 3]
+        let array2 = [bread, milk, orange, tomato];
+        let array3 = [];
+
+
+        // document.querySelector('.food').addEventListener('click',function(){
+        //     choose(document.querySelector('.food'));
+        // });
+        let id = '';
+        array2.forEach((x) => {
+            x.onclick = () => {
+                array2.forEach((y) => {y.style.backgroundColor = '#FFFFFF'});
+                x.style.backgroundColor = '#e5e5e5';
+                id = x.id;
+            }
+        })
+
+        
+        //Up
+        let up = document.getElementById('btn1');
+        up.onclick = () => {
+         
+            if( array2.indexOf(document.getElementById(id)) != array1[0] ){
+                let position = array1.indexOf(array2.indexOf(document.getElementById(id)));
+                // console.log(position);
+                let temp = array1[position];
+                array1[position] = array1[position-1];
+                array1[position-1] = temp;
+                // console.log(array1);
+
+
+                // frame.querySelector('.food').forEach((food) => {
+                //     food.removeChild(food);
+                // })
+
+                for(let i = 0; i < frame.childNodes.length; i++){
+                    frame.removeChild(frame.childNodes[i]);
+                }
+
+                // frame.removeChild(document.querySelector('#bread'));
+                // frame.removeChild(document.querySelector('#milk'));
+                // frame.removeChild(document.querySelector('#orange'));
+                // frame.removeChild(document.querySelector('#tomato'));
+                
+                array1.forEach((number) => {
+                    frame.appendChild(array2[number]);
+                });
+            }
+        };
+
+
+
+        //Down
+        let down = document.getElementById('btn4');
+        down.onclick = () => {
+            if( array2.indexOf(document.getElementById(id)) != array1[3] ){
+                let position = array1.indexOf(array2.indexOf(document.getElementById(id)));       
+                let temp = array1[position];
+                array1[position] = array1[position+1];
+                array1[position+1] = temp;
+                console.log(array1);
+
+                for(let i = 0; i < frame.childNodes.length; i++){
+                    frame.removeChild(frame.childNodes[i]);
+                }
+                
+                array1.forEach((number) => {
+                    frame.appendChild(array2[number]);
+                });
+            }
+          
+        };
+
+        // >
+        let move = document.getElementById('btn2');
+        move.onclick = () =>{
+            let position = array1.indexOf(array2.indexOf(document.getElementById(id)));
+            array3.push(array1[position]);
+            array1.splice(position,1);
+            frame.removeChild(document.querySelector(`#${id}`));   
+
+            array3.forEach((number) => {
+                frame3.appendChild(array2[number]);
+            }); 
+        }
+
+        // X
+        let cut = document.getElementById('btn3');
+        cut.onclick = () =>{
+            let position = array1.indexOf(array2.indexOf(document.getElementById(id)));
+            array3.push(array1[position]);
+            array1.splice(position,1);
+
+            console.log(array1);
+            frame.removeChild(document.querySelector(`#${id}`));   
+
+        }
+
+   </script>
+</body>
+</html>
