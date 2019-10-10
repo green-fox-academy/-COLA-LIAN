@@ -1,18 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>DOM: Events</title>
+<script type="text/javascript">
+function changeTextDirection()
+{
+document.getElementById("p1").style.direction="rtl";
+}
+</script>
 </head>
 <body>
-  <button>click me</button>
 
-  <script>
-    'use strict';
-    var button = document.querySelector('button');
-    button.onclick = () => {
-      alert('Green Fox!');
-    };
-  </script>
+<p id="p1">This is some text. This is some text. This is some text.
+This is some text. This is some text. This is some text.
+This is some text. This is some text. This is some text.</p>
+
+<input type="button" onclick="changeTextDirection()" 
+value="Set text to flow right to left" />
+
 </body>
 </html>

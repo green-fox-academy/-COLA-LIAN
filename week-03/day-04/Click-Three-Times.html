@@ -1,0 +1,43 @@
+<!-- Create a simple HTML document with one button.
+If the user clicks the button 3 times, and 5 seconds is already elapsed since the page is loaded, a text should appear under the button:
+5 seconds elapsed and clicked 3 times
+If the user starts clicking before the first 5 seconds, nothing should be printed -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: Click three times</title>
+  </head>
+  <body>
+    <style>
+    button{
+        width: 150px;
+        height: 50px;
+        background-color: "#e5e5e5";
+        margin-top: 20vh;
+        margin-left: 30vw;
+    }
+    </style>
+    <script>
+        let btn = document.createElement('button');
+        btn.innerText = "Click three times";
+        let body = document.body;
+        body.appendChild(btn);
+        let time0 = parseInt(new Date().getTime()/1000);
+        console.log(time0);
+
+        btn.onclick = () => {
+            btn.onclick = () => {
+                btn.onclick = () => {
+                    if(timeCurrent - time0 >= 5){
+                        console.log('5 seconds elapsed and clicked 3 times.');
+                    }
+                }
+            }
+        }
+
+
+    </script>
+  </body>
+</html>

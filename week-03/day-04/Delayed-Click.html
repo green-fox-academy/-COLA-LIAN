@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: Delayed Click</title>
+  </head>
+  <body>
+    <style>
+    button{
+        width: 100px;
+        height: 50px;
+        background-color: "#e5e5e5";
+        margin-top: 20vh;
+        margin-left: 30vw;
+    }
+    p{
+        margin-left: 30vw;
+    }
+    </style>
+
+    <script>
+        let btn = document.createElement('button');
+        let body = document.body;
+        body.appendChild(btn);
+        btn.innerText = 'delayed button';
+        document.addEventListener("click", delay);
+    
+        function delay(){
+            setTimeout('text()',2000);
+        }
+        function text(){
+            let x = document.createElement('p');
+            x.innerHTML = '2 seconds ellapsed';
+            body.appendChild(x);
+        }
+    </script>
+  </body>
+</html>
