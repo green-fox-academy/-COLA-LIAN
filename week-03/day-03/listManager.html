@@ -147,10 +147,14 @@ button{
                 //     food.removeChild(food);
                 // })
 
-                frame.removeChild(document.querySelector('#bread'));
-                frame.removeChild(document.querySelector('#milk'));
-                frame.removeChild(document.querySelector('#orange'));
-                frame.removeChild(document.querySelector('#tomato'));
+                for(let i = 0; i < frame.childNodes.length; i++){
+                    frame.removeChild(frame.childNodes[i]);
+                }
+
+                // frame.removeChild(document.querySelector('#bread'));
+                // frame.removeChild(document.querySelector('#milk'));
+                // frame.removeChild(document.querySelector('#orange'));
+                // frame.removeChild(document.querySelector('#tomato'));
                 
                 array1.forEach((number) => {
                     frame.appendChild(array2[number]);
@@ -170,10 +174,9 @@ button{
                 array1[position+1] = temp;
                 console.log(array1);
 
-                frame.removeChild(document.querySelector('#bread'));
-                frame.removeChild(document.querySelector('#milk'));
-                frame.removeChild(document.querySelector('#orange'));
-                frame.removeChild(document.querySelector('#tomato'));//need debug
+                for(let i = 0; i < frame.childNodes.length; i++){
+                    frame.removeChild(frame.childNodes[i]);
+                }
                 
                 array1.forEach((number) => {
                     frame.appendChild(array2[number]);
