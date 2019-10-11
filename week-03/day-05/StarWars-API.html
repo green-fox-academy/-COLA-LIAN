@@ -27,55 +27,81 @@
     }
     </style>
     <body>
-        <div class = "frame" id="frame1">
+        <div class = "frame">
             <h2>Enter charater name</h2>
-            <input type="text" id="input" />
+            <input type="text" id="input"/>
+            <div id="frame1"> </div>
         </div>
 
-        <div class = "frame">
+        <div class = "frame"> 
             <button id="search"><h2>search</h2></button>
+             <div id = "frame2"></div>
         </div>
     </body>
 
 
 
 
-
     <script>
         let search = document.getElementById('search');
+        let frame1 = document.getElementById('frame1');
+        let frame2 = document.getElementById('frame2');
+
         search.addEventListener('click', find);
         
-        // function find(){
+        function find(){
+            for(let x = 0; x < frame1.childNodes.length; x++){
+                console.log("frame1:"+frame1.childNodes.length);
+                frame1.removeChild(frame1.childNodes[x]);
+            }
+
             let xhr = new XMLHttpRequest();
-            // let body = document.body;
+
             function starWars(){
+                let name = document.getElementById('input').value;
                 xhr.onreadystatechange = callback;
-                xhr.open('GET', `https://swapi.co/api/people/`, true);
+                xhr.open('GET', `https://swapi.co/api/people/?search=${name}`, true);
                 xhr.send(null);
              }
  
-        function callback(){
-            if(xhr.readyState == 4){
-                if(xhr.status == 200){
-                let res = JSON.parse(xhr.responseText);
-                console.log(res);    
-                // console.log(res.results.length);
+            function callback(){
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
+                    let res = JSON.parse(xhr.responseText);
+                    // console.log(res);    
+
                     for(let i = 0; i < res.results.length; i++){
                         let people = document.createElement('li')
                         people.innerText = res.results[i].name;
-                        let frame1 = document.getElementById('frame1');
-                        frame1.appendChild(people);
+                        frame1.appendChild(people);                    
 
+                        people.addEventListener('click', function(){
+                            for(let x = 0; x < frame2.childNodes.length; x++){
+                               frame2.removeChild(frame2.childNodes[x]);
+                            }
+                
+                            for(let j = 0; j < res.results[i].films.length; j++){
+                                let xhrFilm = new XMLHttpRequest();
+                                xhrFilm.onreadystatechange = callbackFilm;
+                                xhrFilm.open('GET', `${res.results[i].films[j]}`, true);
+                                xhrFilm.send(null);
+ 
+                                function callbackFilm(){
+                                    if(xhrFilm.readyState == 4){
+                                        if(xhrFilm.status == 200){
+                                            let resFilm =JSON.parse(xhrFilm.response);    
+                                            let movie = document.createElement('li');
+                                            let date = document.createElement('div')
+                                            movie.innerText = resFilm.title;
+                                            date.innerText = resFilm.release_date;
+                                            movie.appendChild(date);
+                                            frame2.appendChild(movie);  
+                                        }
+                                    }
+                                }
 
-                        console.log('======='+res.results[i].films.length);
-                        // for(let j = 0; j < res.results[i].films.length; j++)
-                        // people.addEventListener('click', function(){
-                        //     let xhrFilm = new XMLHttpRequest();
-                        //     xhr.onreadystatechange = callback;
-                        //     xhr.open('GET', `${res.results[i]}`, true);
-                        //     xhr.send(null);
-
-                        // })
+                          }      
+                        })      
                     }
 
                 }
@@ -84,10 +110,7 @@
 
         starWars();
 
-
-
-
-        // }
+        }
 
 
         </script>
