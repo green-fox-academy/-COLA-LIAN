@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Star Wars API</title>
+    </head>
+
+    <script>
+        let xhr = new XMLHttpRequest();
+        let body = document.body;
+        function artSearch(){
+            xhr.onreadystatechange = callback;
+            xhr.open('GET', ``, true);
+            xhr.send(null);
+        }
+ 
+        function callback(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                let res = JSON.parse(xhr.responseText);
+                console.log(res.response);    
+                for(let i = 0; i < res.response.docs.length; i++){
+                    let list = document.createElement('ul')
+                    let Headline = document.createElement('h1');
+                    let Snippet = document.createElement('p');
+                    let date = document.createElement('p');
+                    let link = document.createElement('a');
+                    
+                    Headline.innerText = res.response.docs[i].headline.main;
+                    Snippet.innerText = res.response.docs[i].snippet;
+                    date.innerText = res.response.docs[i].pub_date;
+                    link.innerText = res.response.docs[i].web_url;
+
+                    list.appendChild(Headline);
+                    list.appendChild(Snippet);
+                    list.appendChild(date);
+                    list.appendChild(link);
+                    body.appendChild(list);
+                }
+                }
+            }
+        }
+
+        artSearch();
+        </script>
+</html>

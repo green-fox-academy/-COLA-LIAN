@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Giphy API</title>
+      </head>
+      <style>
+      #gif{
+          height: 100%;
+          width: 100%;
+      }
+      img{
+          height: 20vh;
+          width:20vw;
+      }
+      </style>
+      <body>
+          <div id="gif"></div>
+      </body>
+
+
+    <script>
+        let xhr = new XMLHttpRequest();
+        let key = 'O4oHqhv3NDZqtMvLQdCL21zqX0NwBULG';
+        let limit = 16;
+    function giphy(){
+        xhr.onreadystatechange = callback;
+        xhr.open('GET', `https://api.giphy.com/v1/gifs/search?api_key=O4oHqhv3NDZqtMvLQdCL21zqX0NwBULG`+`&&q=otter`+`&&limit=${limit}`, true);
+        xhr.send(null);
+    }
+        
+ 
+        function callback(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                let res = JSON.parse(xhr.responseText);
+                console.log(res.data[0]);
+
+                let gif = document.getElementById('gif');
+                for(let i = 0; i < limit; i++){
+                    let node =  document.createElement('img');
+
+                    node.setAttribute('src',`${res.data[i].images.original_still.url}`);
+                    gif.appendChild(node);
+
+                    node.addEventListener('click', function(){
+                        node.setAttribute('src',`${res.data[i].images.original.url}`);
+                    })
+                    // node.onclick = () =>{
+                    //     node.setAttribute('src',`${res.data[i].images.original.url}`);
+                    // }
+                }
+            }
+        }
+        }
+            
+        giphy();
+        </script>
+</html>
+
