@@ -4,6 +4,7 @@
         <title>New York Times API</title>
     </head>
 
+    <body></body>
     <script>
         let xhr = new XMLHttpRequest();
         let body = document.body;
@@ -29,6 +30,7 @@
                     Headline.innerText = res.response.docs[i].headline.main;
                     Snippet.innerText = res.response.docs[i].snippet;
                     date.innerText = res.response.docs[i].pub_date;
+                    link.href = res.response.docs[i].web_url;
                     link.innerText = res.response.docs[i].web_url;
 
                     list.appendChild(Headline);
