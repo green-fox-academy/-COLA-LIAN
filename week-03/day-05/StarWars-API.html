@@ -48,12 +48,8 @@
         let frame2 = document.getElementById('frame2');
 
         search.addEventListener('click', find);
-        
         function find(){
-            for(let x = 0; x < frame1.childNodes.length; x++){
-                console.log("frame1:"+frame1.childNodes.length);
-                frame1.removeChild(frame1.childNodes[x]);
-            }
+            document.getElementById('frame1').innerHTML = '';
 
             let xhr = new XMLHttpRequest();
 
@@ -76,9 +72,7 @@
                         frame1.appendChild(people);                    
 
                         people.addEventListener('click', function(){
-                            for(let x = 0; x < frame2.childNodes.length; x++){
-                               frame2.removeChild(frame2.childNodes[x]);
-                            }
+                            document.getElementById('frame2').innerHTML = '';
                 
                             for(let j = 0; j < res.results[i].films.length; j++){
                                 let xhrFilm = new XMLHttpRequest();
