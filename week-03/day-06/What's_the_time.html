@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>What's the time?</title>
+    </head>
+
+    <style>
+        #load{
+            height: 30px;
+            border-radius: 5px;
+            background-color: #e5e5e5;
+            color: red;
+        }
+        #click{
+            height: 30px;
+            border-radius: 5px;
+            background-color: #e5e5e5;
+            color: red;
+        }
+    </style>
+
+    <body>
+        <div>Script loaded at <button id="load"></button></div>
+        <button id="btn" style="background-color: #e5e5e5;">Resolve</button>
+        <div>Button clicked after  <button id="click"></button> seconds</div>
+    </body>
+
+    <script> 
+        let loadTime = new Date();     
+        document.getElementById('load').innerText = "星期"+loadTime.getDay()+'  '+loadTime.toLocaleString()+`  GMT+0800 (China Standrd Time)`;
+        let btn = document.getElementById('btn');
+
+        //way 1
+        // btn.addEventListener("click",function(){
+        //     document.getElementById('click').innerText = parseInt(performance.now()/1000);
+        // })
+
+
+        //way 2
+        // new Promise(function(resolve, reject){
+        //     btn.onclick = () => resolve(document.getElementById('click'));
+        //     }).then(object => {
+        //         object.innerText = parseInt(performance.now()/1000);
+        //         console.log("=====");
+        // })
+        
+       
+       
+        
+        // //way3 
+        btn.onclick = () => {
+            async function time(){
+                let data = await parseInt(performance.now()/1000);
+                document.getElementById('click').innerText = data;
+            }         
+            time();
+        }
+
+        
+        
+    </script>
+</html>
+

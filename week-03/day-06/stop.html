@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Stop me if you can</title>
+    </head>
+
+    <style>
+
+    </style>
+
+    <body>
+        <button id="stop" style="background-color: #e5e5e5;">Cancel</button>
+    </body>
+
+    <script>
+
+        //way 1     
+        let data = setInterval(() => alert('5 seconds passed!'),5000);
+        document.getElementById('stop').addEventListener('click', () =>{
+            window.clearInterval(data)
+        });
+
+               
+        //way2
+        new Promise(function(resolve, reject){
+            resolve( setInterval(() => alert('5 seconds passed!'),5000) );    
+        }).then( data => {
+            document.getElementById('stop').addEventListener('click', () =>{
+                window.clearInterval(data)
+            });
+        }) 
+            
+         
+        //way3
+        async function second(){
+           const data = await setInterval(() => alert('5 seconds passed!'),3000); 
+           document.getElementById('stop').addEventListener('click', () =>{
+                window.clearInterval(data)
+            });
+        }
+        second();
+
+    </script>
+</html>
