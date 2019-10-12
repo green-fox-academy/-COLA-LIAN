@@ -26,7 +26,23 @@
 </div>
 
 
-<script>   
+<script> 
+let xhr = new XMLHttpRequest;
+xhr.onreadystatechange = callback;
+xhr.open('GET', `https://api.github.com/repos/green-fox-academy/{repo}/commits`, true);
+xhr.send(null);
+
+
+function callback(){
+    if(xhr.readyState === 4){
+    if(xhr.status ===200){
+        console.log(xhr.response);
+    }
+}
+}
+
+
+
 </script>
     
     

@@ -1,11 +1,54 @@
-<html>
     <head>
         <meta charset="UTF-8">
-        <title>Joke Extension</title>
+        <title>Fetch some jokes</title>
     </head>
+    <style>
+        #button{
+            width: 100px;
+            height: 30px;
+            margin: auto;
+            background-color: blue;
+            border-radius: 10px;
+            color: #ffffff;
+        }
+        .frame{
+            margin-left: 30vw;
+            margin-top: 30vh;
+        }
+    </style>
+    
     <body>
-    </body>
-
-    <script>
+    <div class="frame">
+        <div id="text"></div>
+        <button id="button">Gimme a joke</button>
+    </div>
+       
+    <script> 
+        let btn = document.getElementById('button');
+        let text = document.getElementById('text');
+    
+        // //fetch way
+        // btn.addEventListener('click', function(){ 
+        //     fetch('http://api.icndb.com/jokes/random')
+        //         .then(res => res.json())
+        //         .then(resJson => {
+        //             text.textContent += ' '+resJson.value.joke;          
+        //         }).catch(err => {
+        //             text.textContent = 'Request error!';
+        //     })
+        // })
+    
+        //async & await way
+        btn.addEventListener('click', async function(){
+            try{
+                const res = await fetch('http://api.icndb.com/jokes/random');
+                const resJson = await res.json();
+                text.textContent += ' '+resJson.value.joke; 
+            }catch{
+                text.textContent = 'Request error!';
+            }      
+        })
     </script>
-</html>
+              
+    </body>
+    </html>
