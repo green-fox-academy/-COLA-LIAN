@@ -14,32 +14,111 @@
         margin-left: 15vw;
     }
     .frame{
-        margin-left: 30vw;
-        margin-top: 30vh;
+        margin-left: 10vw;
+        margin-top: 10vh;
+    }
+    .msg{
+        width: 100vw;
+        height: 5vh;
+        border-style: solid;
+        border-width: 1px;
+        border-color: blue;
     }
 </style>
 
 <body>
-<div class="frame">
-    <h1>Commit messages of someone</h1>
-    <button id="button">Get the next repo</button>
-</div>
+    <div class="frame0">   
+        <h1 id="title"></h1>   
+    </div>    
 
-
+    <div class="frame">
+        <h1 id='homepage'>Commit messages of someone</h1>
+        <button id="button">Get the next repo</button>
+    </div>
 <script> 
-let xhr = new XMLHttpRequest;
-xhr.onreadystatechange = callback;
-xhr.open('GET', `https://api.github.com/repos/green-fox-academy/{repo}/commits`, true);
-xhr.send(null);
 
+let btn = document.getElementById('button');
+let homepage = document.getElementById('homepage');
+let title = document.getElementById('title');
 
-function callback(){
-    if(xhr.readyState === 4){
-    if(xhr.status ===200){
-        console.log(xhr.response);
+    async function github(){
+        const res = await fetch('https://api.github.com/orgs/green-fox-academy/repos');
+        const resJson = await res.json();    
+        return resJson
     }
-}
-}
+
+    function* commitMsg(array){ 
+        let msg = array.shift();
+        let MSG = document.createElement('div');
+        let frame0 = document.querySelector('.frame0');
+
+        MSG.className = 'msg';
+        MSG.innerText = `${msg.commit.author.date}`+"            "+`${msg.commit.message}`+"                "+`${msg.commit.author.name}`;
+        frame0.appendChild(MSG);
+         
+        yield msg;
+    }
+
+
+    github().then(data => {
+
+        // btn.addEventListener('click', function(){
+        //     homepage.innerText = '';
+        //     title.innerText = 'Commit messages of green-fox-academy.github.io';
+        //     let generator = commitMsg(data);
+        //     generator.next(data);
+        // })
+
+        // console.log(data);
+        data.forEach(repo => {
+
+            fetch(`https://api.github.com/repos/green-fox-academy/${repo.name}/commits?page=1&per_page=10`).then(
+                info => info.json()
+            ).then(commits => { //firts 10 commits for each {repo}
+                console.log(commits);
+
+                homepage.innerText = '';
+                title.innerText = 'Commit messages of green-fox-academy.github.io';
+
+                let generator = commitMsg(commits);
+                generator.next(commits);
+
+            })
+
+
+
+        });
+        
+    })
+
+
+
+    
+    
+   
+        
+      
+    
+
+
+    
+
+   
+
+
+
+   
+
+        
+    
+
+
+
+   
+
+
+
+
 
 
 
