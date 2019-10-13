@@ -47,83 +47,36 @@ let title = document.getElementById('title');
         return resJson
     }
 
-    function* commitMsg(array){ 
-        let msg = array.shift();
+    function* commitMsg(msg){ 
         let MSG = document.createElement('div');
         let frame0 = document.querySelector('.frame0');
-
         MSG.className = 'msg';
-        MSG.innerText = `${msg.commit.author.date}`+"            "+`${msg.commit.message}`+"                "+`${msg.commit.author.name}`;
-        frame0.appendChild(MSG);
-         
+        MSG.innerHTML = `${msg.commit.author.date}`+"            "+`${msg.commit.message}`+"                "+`${msg.commit.author.name}`;
+        frame0.appendChild(MSG);    
         yield msg;
     }
 
 
     github().then(data => {
-
         // btn.addEventListener('click', function(){
-        //     homepage.innerText = '';
-        //     title.innerText = 'Commit messages of green-fox-academy.github.io';
-        //     let generator = commitMsg(data);
-        //     generator.next(data);
-        // })
-
-        // console.log(data);
+        // })   
         data.forEach(repo => {
+            fetch(`https://api.github.com/repos/green-fox-academy/${repo.name}/commits?page=1&per_page=10`)
+            .then(info => info.json())
+            .then(commits => { //firts 10 commits for each {repo}
 
-            fetch(`https://api.github.com/repos/green-fox-academy/${repo.name}/commits?page=1&per_page=10`).then(
-                info => info.json()
-            ).then(commits => { //firts 10 commits for each {repo}
-                console.log(commits);
-
-                homepage.innerText = '';
-                title.innerText = 'Commit messages of green-fox-academy.github.io';
-
-                let generator = commitMsg(commits);
-                generator.next(commits);
-
+            btn.addEventListener('click',  //need to be adjusted
+                commits.forEach(item =>{
+                    homepage.innerText = '';
+                    title.innerText = 'Commit messages of green-fox-academy.github.io';
+         
+                    let generator = commitMsg(item);
+                    generator.next(item);    
+            }));  
             })
-
-
-
         });
         
     })
-
-
-
-    
-    
-   
-        
-      
-    
-
-
-    
-
-   
-
-
-
-   
-
-        
-    
-
-
-
-   
-
-
-
-
-
-
-
-</script>
-    
-    
+</script>   
 </body>
 </html>
