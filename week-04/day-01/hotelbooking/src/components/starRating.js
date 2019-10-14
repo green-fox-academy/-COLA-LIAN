@@ -22,6 +22,7 @@ const style={
     borderWidth: '1px',
     borderColor: 'black',
     width : '250px',
+    height : '250px',
 }
 
 
@@ -42,7 +43,7 @@ class CheckBoxClass extends React.Component {
 const stars = [];
 data.filters['Star rating'].forEach((item) =>{
   stars.push(
-    <CheckBoxClass checked={item.checked} key={item.name} item={item}/>
+    <CheckBoxClass checked={item.checked} checked={item.checked}  key={item.name} item={item}/>
   )
 })
 

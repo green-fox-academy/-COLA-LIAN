@@ -22,6 +22,7 @@ const style={
   borderWidth: '1px',
   borderColor: 'black',
   width : '250px',
+  height: '250px',
 }
 
 class CheckBoxClass extends React.Component {
@@ -39,7 +40,7 @@ class CheckBoxClass extends React.Component {
 const props = [];
 data.filters['Property type'].forEach((item) =>{
   props.push(
-    <CheckBoxClass key={item.name} item={item}/>
+    <CheckBoxClass key={item.name} checked={item.checked} item={item}/>
   )
 })
 
