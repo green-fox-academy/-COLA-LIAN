@@ -6,6 +6,30 @@
 <body>
 <script>
 
+
+// function sortPrio(a,b){
+//   return a-b
+// }
+// let arr = new Array('12','323','3555','50');
+// arr = arr.sort(sortPrio)
+// console.log(arr);
+
+var arr = [
+{item:'Buy milk', priority:1},{item:'Feed the monkey', priority:2}
+];
+ 
+function compare(property){
+    return function(a,b){
+        var value1 = a[property];
+        var value2 = b[property];
+        return value1 - value2;
+    }
+}
+console.log(arr.sort(compare('priority')));
+
+
+
+
 </script>
 
 

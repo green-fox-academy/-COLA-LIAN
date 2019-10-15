@@ -46,7 +46,7 @@ Arrow = (event) => {
       case 'ArrowUp':
           this.buy();
           break;
-               
+            
       case 'ArrowDown':
           this.eat();
           break;
