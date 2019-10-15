@@ -42,7 +42,6 @@ width:'200px',
 height:'200px',
 }
 
-
 const right = {
 width:'75%',
 float: 'left',
