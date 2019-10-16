@@ -6,29 +6,30 @@ const style = {
     marginTop: '20vh',
 }
 
-
-
 class component1 extends React.Component{
     constructor(props){
         super(props);
-        this.state={time:0}
-        this.componentDidMount = this.componentDidMount.bind(this);
+        this.state={name:'Component1', time:0}
     }
 
+    componentWillMount(){
+        this.setState({time:(new Date).getTime()});
+        console.log(this.state.time); 
+    } 
+
     componentDidMount(){
-        this.setState({time:performance.now()/1000});
-        console.log(this.state.time);
+        this.props.add(this.state.name, ((new Date).getTime() - this.state.time)/1000 +'s');
+        console.log(this.state.timeme); 
     }
-   
+
     render(){
         return(
-        <tr>
-            <td>Jerry</td>
-            <td>{this.state.time}s</td>
-        </tr>
+            <p>
+                This is the content of Component1!
+            </p>
         )
     }
-    
+
 }
 
 export default component1
