@@ -13,7 +13,7 @@ class component2 extends React.Component{
 
     componentDidMount(){
         this.props.add(this.state.name, (((new Date).getTime() - this.state.time)/1000) +'s');
-        console.log(this.state.timeme); 
+        console.log(this.state.time); 
     }
 
     render(){
