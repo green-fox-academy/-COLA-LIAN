@@ -1,16 +1,31 @@
-import React from 'react';
-
+import React from 'react'
+import { connect } from 'react-redux'
 
 
 function increaser(props){
     return(
-        <div className="increaser">
-            <h1>The increaser</h1>
-            <div>account</div>
-            <button>Increase</button>
+        <div className = "increaser">
+            <h1>The Increaser</h1>
+            <p>{props.counter}</p>
+            <button onClick = {props.increaser} >Increase</button>
         </div>
     )
 }
 
 
-export default increaser;
+const mapStateToProps = state => {
+    return {
+        counter: state.counter 
+    }      
+}
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        increaser:() => {
+            dispatch({type: 'INCREASE'})
+        } 
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(increaser)
