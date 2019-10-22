@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-const addTag = (props) => {
+const AddTag = (props) => {
     const [value, setValue] = useState('');
 
     const handleChange = event => {
@@ -22,6 +22,7 @@ const addTag = (props) => {
     )
 }
 
+
 const mapStateToProps = state => {
     return {
         tags: state.tags
@@ -36,4 +37,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(addTag)
+export default connect(mapStateToProps, mapDispatchToProps)(AddTag)

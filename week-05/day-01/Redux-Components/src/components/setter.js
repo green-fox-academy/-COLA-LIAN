@@ -1,16 +1,30 @@
-import React from 'react'
+import React, { useState }  from 'react'
 import { connect } from 'react-redux'
 
-function setter(props) {
+
+const Setter = (props) => {
+
+    const [value, setValue] = useState('');
+
+    const handleChange = event => {
+        setValue(event.target.value);
+    }
+
+    const handleClick = () => {
+        props.setter(value);
+        setValue('');
+    }
 
     return(
         <div className = 'setter'>
             <h1>The Setter</h1>
-            <input className = 'setCounter'></input>
-            <button onClick = {props.setter}>Set</button>
+            <input className = 'setCounter' onChange = {handleChange}></input>
+            <button onClick = {handleClick}>Set</button>
         </div>
     )
 }
+
+
 
 const mapStateToProps = state => {
     return {
@@ -26,4 +40,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(setter)
+export default connect(mapStateToProps, mapDispatchToProps)(Setter)

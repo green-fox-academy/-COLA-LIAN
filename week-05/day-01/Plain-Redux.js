@@ -75,10 +75,15 @@ function counter(state = initState, action){
             }
 
         case 'ADD_TAG':
-            state.tags.push(action.tag);
-            return {
-                ...state,
+            // state.tags.push(action.tag);
+            if(!state.tags.includes(action.tag)){
+                return{
+                    ...state,
+                    tags: [...state.tags, action.tag]
+                }
             }
+            return {...state}
+
         case 'REMOVE_TAG':
             state.tags.splice(state.tags.indexOf(action.tag),1);
             return {
