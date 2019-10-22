@@ -23,9 +23,10 @@ function App() {
       <div className = "tag">
         <TagState />
         <AddTag />
+        <ComplexCounter />
         <RemoveTag />
         <RemoveAllTags />
-        <ComplexCounter />
+        
       </div>
   </div>
   );
