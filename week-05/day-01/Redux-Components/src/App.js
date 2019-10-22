@@ -19,7 +19,7 @@ function App() {
       </div>
       <div className = "tag">
         <TagState />
-        <addTag />
+        <AddTag />
       </div>
   </div>
   );

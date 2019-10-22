@@ -8,7 +8,7 @@ const AddTag = (props) => {
         setValue(event.target.value)
     }
 
-    const click = value => {
+    const handleClick = value => {
         props.addTag(value)
         setValue('')
     }
@@ -16,12 +16,11 @@ const AddTag = (props) => {
     return(
         <div>
             <h1>Add Tag</h1> 
-            <input type = "text" onChance={handleChange} value={value}></input>
-            <button onClick={() => click(value)}>Add</button>
+            <input type = "text" onChange={handleChange} value={value}></input>
+            <button onClick={() => handleClick(value)}>Add</button>
         </div>
     )
 }
-
 
 const mapStateToProps = state => {
     return {
