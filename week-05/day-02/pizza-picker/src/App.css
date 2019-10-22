@@ -1,0 +1,12 @@
+/* .App {
+  text-align: center;
+} */
+
+.toppingFrame{
+  display: flex;
+  flex-direction: row;
+}
+.componentFrame{
+  display: flex;
+  flex-direction: row;
+}
