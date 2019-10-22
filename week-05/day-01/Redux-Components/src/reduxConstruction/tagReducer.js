@@ -2,7 +2,8 @@
 
 const tagState = ['blue', 'bold', 'hipster'];
 
-function tagReducer(state = tagState, action){   
+function tagReducer(state = tagState, action){
+    let tagList = state;
     switch (action.type) { 
         case 'ADD_TAG':
             if(!state.includes(action.tag)){
@@ -13,12 +14,12 @@ function tagReducer(state = tagState, action){
             
         case 'REMOVE_TAG':             
             if(state.includes(action.tag)){
-                state.splice(state.indexOf(action.tag),1);
+                let newTags = tagList.filter(item => item !== action.tag)
+                return newTags
             }
             return state
 
         case 'REMOVE_TAGS':
-            state.tags = [];
             return []
     }
     return state
