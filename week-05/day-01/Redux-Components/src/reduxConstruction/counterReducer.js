@@ -2,7 +2,15 @@ function counterReducer(state = 0, action){
 
     switch (action.type) { 
         case 'INCREASE':
-            return state + 1
+            // return state + 1
+            if(action.amount === undefined){
+                return state + 1
+            }else{
+                return {
+                    ...state,
+                    counter: state.counter + action.amount,
+                } 
+            }
                 
         case 'DECREASE':
             return state - 1

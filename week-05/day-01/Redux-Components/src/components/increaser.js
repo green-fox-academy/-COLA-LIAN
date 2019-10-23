@@ -6,7 +6,6 @@ function increaser(props){
     return(
         <div className = "increaser">
             <h1>The Increaser</h1>
-            <p>{props.counter}</p>
             <button onClick = {props.increaser} >Increase</button>
         </div>
     )

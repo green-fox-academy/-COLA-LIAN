@@ -10,6 +10,7 @@ import TagState from './components/tagState';
 import RemoveTag from './components/removeTag';
 import RemoveAllTags from './components/removeAllTags'
 import ComplexCounter from './components/complexCounter'
+import AsyncIncrementer from './components/asyncIncrementer'
 
 function App() {
   return (
@@ -26,8 +27,10 @@ function App() {
         <ComplexCounter />
         <RemoveTag />
         <RemoveAllTags />
-        
       </div>
+      <div className = "tag">
+    <AsyncIncrementer />
+    </div>
   </div>
   );
 }
