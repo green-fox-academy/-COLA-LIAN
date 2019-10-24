@@ -16,11 +16,33 @@ const cocktails = [
 const alcoholList = ['gin', 'vodka', 'rum', 'tequila'];
 
 app.set('view engine', 'ejs');
+app.use('/static', express.static('static'));
+
 
 // home page
 app.get('/', (req, res) => {
-    res.render('home', {cocktails});
+    
+    const type = req.query.alcohol;
+    let result = [];
+    if(alcoholList.includes(type)){
+        cocktails.forEach((item) =>{
+            if(item.contains.includes(type)){
+                result.push(item);
+            }
+        })
+        res.render('home', {cocktails: result, alcoholList});
+
+    }else{
+        res.render('home', {cocktails, alcoholList});
+    }
+    
 });
+
+
+
+
+
+
 
 
 // start express app on port 3000

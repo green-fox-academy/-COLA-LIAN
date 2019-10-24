@@ -1,0 +1,27 @@
+.alcoholList{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-left: 0;
+    color: #795ba4;
+    width: 30vw;
+    font-weight: bold;
+}
+.table{
+    border-collapse: Collapse;
+}
+.tHeader{
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+.tBody:nth-of-type(even) {
+    background-color: #EDEDED;
+}
+
+.tBody:nth-of-type(odd) {
+    background-color: #FFFFFF;  
+}
+.alcohoName{
+    display: flex;
+}

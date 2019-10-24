@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <title>Cocktails</title>
+  </head>
+  <body>
+    <h1>Cocktails</h1>
+
+    <div class="alcoholList">
+        <% alcoholList.forEach(function(item){%>
+            <div><%= item %></div>
+        <% }) %> 
+    </div>
+
+    <table class="table" border="1" >
+        <tr class="tHeader">
+          <th><h3>NAME</h3></th>
+          <th><h3>PRICE</h3></th>
+        </tr>
+       
+        <% cocktails.forEach(function(item){%>
+            <tr class="tBody">       
+               <td>
+                   <div class="alcohoName">
+                        <h3><%= item.name%></h3>
+                        <%= item.isAlcoholic? '' :  '(non-alcoholic)' %>
+                    </div>
+                    <p><%= item.contains %></p>
+                </td>
+
+                <td><%= item.price %> Ft</td>  
+            </tr>
+        <% }) %>
+
+      </table>
+
+  </body>
+</html>
