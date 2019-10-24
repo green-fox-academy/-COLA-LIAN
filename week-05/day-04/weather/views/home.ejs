@@ -2,9 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Welcome!</title>
+    <title>Weather</title>
   </head>
   <body>
-    <h1>Welcome!</h1>
+    <h1>Weather Forecast</h1>
+    <div>
+        <% forecasts.forEach(function(item){%>
+            <div>
+                <p><%= item.city %></p>
+                <p><%= item.location %></p>
+                <p><%= item.weather[0].temp %></p>      
+            </div>
+        <% }) %>
+    </div>
   </body>
 </html>
