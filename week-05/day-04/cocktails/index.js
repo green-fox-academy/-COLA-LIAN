@@ -40,10 +40,5 @@ app.get('/', (req, res) => {
 
 
 
-
-
-
-
-
 // start express app on port 3000
 app.listen(PORT);
