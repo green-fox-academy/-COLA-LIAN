@@ -1,7 +1,6 @@
 const PORT = 3001;
 const express = require('express')
 const app = express()
-
 app.use(express.json())
 
 // reverse method
@@ -32,12 +31,6 @@ function reverse(sentence){
 
 function splitPara(paragraph){
     let sentences = paragraph.split('. ');
-
-    // let finalWord = sentences[sentences.length-1];
-    // finalWord= finalWord.substr(0, finalWord.length-1);//delete the period
-    // sentences.splice(sentences.length-2, finalWord);
-    // console.log("======"+sentences);
-
     sentences.map((item, index) =>{
         if(item == ''){
             sentences.splice(index, 1);
@@ -50,7 +43,9 @@ function splitPara(paragraph){
 
 function sithText(paragraph){
     let sentencesArr = splitPara(paragraph);
-    console.log(sentencesArr);
+    let finalWord = sentencesArr[sentencesArr.length-1];
+    finalWord = finalWord.substr(0, finalWord.length-1);
+    sentencesArr.splice(sentencesArr.length-1,1, finalWord);//delete the period
 
     let newSentenceArr = '';
     sentencesArr.forEach(sentence => {
@@ -62,8 +57,6 @@ function sithText(paragraph){
     // console.log(newSentenceArr);
     return newSentenceArr
 }
-
-
 
 
 

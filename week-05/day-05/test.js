@@ -22,16 +22,8 @@ function reverse(sentence){
     return newSentence
 }
 
-
 function splitPara(paragraph){
     let sentences = paragraph.split('. ');
-
-    // let finalWord = sentences[sentences.length-1];
-    // finalWord= finalWord.substr(0, finalWord.length-1);//delete the period
-    // sentences.splice(sentences.length-2, finalWord);
-    // console.log("======"+sentences);
-
-
     sentences.map((item, index) =>{
         if(item == ''){
             sentences.splice(index, 1);
@@ -40,23 +32,22 @@ function splitPara(paragraph){
     return sentences
 }
 
-// splitPara(sen);
-
 function sithText(paragraph){
     let sentencesArr = splitPara(paragraph);
-    console.log(sentencesArr);
-
+    
+    
+    let finalWord = sentencesArr[sentencesArr.length-1];
+    finalWord = finalWord.substr(0, finalWord.length-1);
+    sentencesArr.splice(sentencesArr.length-1,1, finalWord);//delete the period
+    
     let newSentenceArr = '';
     sentencesArr.forEach(sentence => {
         let firstCapital = reverse(sentence).substr(0,1).toUpperCase();
         let reverseSentence = firstCapital + reverse(sentence).substr(1);
-        
         newSentenceArr = newSentenceArr + ' ' + reverseSentence;
-        // console.log(reverse(sentence));
-
     })
 
-    console.log(newSentenceArr);
+    return newSentenceArr
 }
 
 let sen = "This is my example sentence. Just for fun. Hello world."
