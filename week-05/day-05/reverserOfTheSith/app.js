@@ -8,6 +8,7 @@ function reverse(sentence){
     // sentence = sentence.substr(0, sentence.length-1);
     const arr = sentence.split(' ');
     const len = arr.length;
+    const modal = ['Arrgh.', 'Emm.', 'Great!', 'Hmm.', 'Err.'];
     let words = [];
 
     if(len % 2 == 0){
@@ -24,7 +25,7 @@ function reverse(sentence){
         words.push(finalWord);
     }
     let newSentence = words.join(" "); 
-    newSentence += ". Arrgh.";
+    newSentence += '. '+ modal[Math.floor(Math.random()*(modal.length-1))];
     return newSentence
 }
 
