@@ -1,13 +1,37 @@
 const express = require('express') //import express
 const path = require('path')
 const app = express() //use express
-const PORT = 8080
+const PORT = 3000
 
 app.use(express.static('assets'));
 
 app.get('/', (req, res) => {   
     res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+function sumUntil(number){
+    let sum = 0;
+    for(let i = 1; i <= number; i++){
+        sum += i;
+    }
+    // console.log(sum);
+    return sum
+}
+
+function factorUntil(number){
+    let factor = 1;
+    for(let i = 1; i <= number; i++){
+        factor = factor * i;
+    }
+    // console.log(factor);
+    return factor
+}
+
+// sumUntil(5);
+// factorUntil(5);
+
+
+
 
 
 //doubling
@@ -63,10 +87,25 @@ app.get('/appenda/:appendable', (req, res) => {
 
 //do until
 app.post('/dountil/:action', (req, res) => {
+    const { params, body } = req;
+    const { action } = params;
+    const { until } = body;
+
+    if(action == 'sum'){
+        res.json({
+            result: sumUntil(until)
+        })
+
+    }else if(action == 'factor'){
+        res.json({
+            result: facotrUntil(until)
+        })
+    }
+    res.json({
+        error: 'Please provide a number!'
+    })
 
 })
-
-
 
 
 // app.listen(PORT);
