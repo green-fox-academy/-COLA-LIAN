@@ -34,11 +34,8 @@ exports.postMovies = function postMovies(res, req){
     let body = '';
     req.on('data', function(chunk){
         body += chunk;
-        // console.log("++++"+JSON.parse(body));
+        // console.log("++++"+body.length);
     })
-        // console.log(body);
-
-        // let postBody = JSON.parse(body);
 
     res.on('end', function(){
         postBody = JSON.parse(body);
@@ -56,28 +53,33 @@ exports.postMovies = function postMovies(res, req){
             res.statusCode = 400;
             return
 
-        }else if(titleExist){
+        }    
+        if(titleExist){
             
             res.end('The movie is exist.')
             res.statusCode = 409;
             return
-        }else {
-            if(!postBody.genre){
-                postBody.genre = 'unknown';
-            }
-        }
+        }    
+        // if(!postBody.genre){
+        //     postBody.genre = 'unknown';
+        // }
 
-            movies.push(postBody);
+            movies.push({
+                id: postBody.id,
+                title: postBody.title,
+                genre:postBody.genre || 'unknown'
+            });
+
             res.setHeader('Content-Type', 'application/json');
 
             res.end(JSON.stringify(movies));
-            res.statusCode = 201;
+            res.statusCode = 403;
+            console.log(res.statusCode);
             return
 
     })
 
 }
-
 
 
 exports.getMovieById = function getMovieById(movieId, res){
@@ -113,4 +115,40 @@ exports.deleteMovieById = function deleteMovieById(movieId, req, res){
 //     res.end('not authorized');
 }
 
+//still debug
+exports.putMovieById = function putMovieById(req, res){
+    const reqUrl = url.parse(req.rel, true);
+    const id = getPath(reqUrl);
+    let result = [];
+    let body = '';
 
+    req.on('data', function(chunk){
+        body += chunk;
+    })
+
+    req.on('end', function(){
+        postBody = JSON.parse(body);
+
+        movies.forEach(item => {
+            if (item.id == postBody.id) {
+                result.push(item);
+                item.title = postBody.title;
+                item.genre = postBody.genre;
+            }
+        })
+
+        if(result[0]){
+            res.statusCode = 404;
+            res.end('Could not find the movie by this ID.')
+        }else{
+            res.statusCode = 200;
+            res.end(JSON.stringify(postBody))
+        }
+
+        // res.statusCode = 403;
+        // res.end();
+
+    })
+
+
+}
