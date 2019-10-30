@@ -28,12 +28,7 @@ let server = http.createServer((req, res) => {
 
         }
         else if(req.method == 'POST'){
-
-
             service.postMovies(res, req);
-
-
-
         }
         // res.write("error");
     }
@@ -46,10 +41,9 @@ let server = http.createServer((req, res) => {
             service.deleteMovieById(movieId, req, res);
         
         }
-        // else if(req.method == 'PUT'){
-
-        // }
-
+        else if(req.method == 'PUT'){
+            service.putMovieById(res,req);
+        }
 
 
     }
