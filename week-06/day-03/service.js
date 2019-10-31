@@ -30,52 +30,49 @@ exports.getMovies = function getMovies(query, res){
 }
 
 exports.postMovies = function postMovies(res, req){
-    
-    let body = '';
+    let [movieId, movieTitle, movieGenre] = [undefined]
+    // let body = '';
     req.on('data', function(chunk){
         body += chunk;
-        // console.log("++++"+body.length);
+        postBody = JSON.parse(body);
+        movieId = postBody.id;
+        movieGenre = postBody.genre;
+        movieTitle = postBody.title;
     })
 
     res.on('end', function(){
-        postBody = JSON.parse(body);
-        console.log('========@@@@'+postBody);
+        // postBody = JSON.parse(body);
 
-        let titleExist = false;
-        movies.forEach(item => {
-            if (item.title == postBody.title) {
-                titleExist = true;
-            }
-        })
+        // let movieExist = false;
+        // movies.forEach(item => {
+        //     if (item.title == postBody.title || item.id == postBody.id) {
+        //         movieExist = true;
+        //     }
+        // })
 
-        if(!postBody.title){
-            res.end('Please provide the movie title.')
-            res.statusCode = 400;
-            return
+        // if(!postBody.title){
+        //     res.end('Please provide the movie title.')
+        //     res.statusCode = 400;
+        //     return
+        // }    
+        // if(movieExist){
+        //     res.statusCode = 409;
+        //     res.end('The movie is exist.')
+        //     return
+        // }    
 
-        }    
-        if(titleExist){
-            
-            res.end('The movie is exist.')
-            res.statusCode = 409;
-            return
-        }    
-        // if(!postBody.genre){
-        //     postBody.genre = 'unknown';
-        // }
+        // movies.push({
+        //     id: postBody.id,
+        //     title: postBody.title,
+        //     genre:postBody.genre || 'unknown'
+        // });
 
-            movies.push({
-                id: postBody.id,
-                title: postBody.title,
-                genre:postBody.genre || 'unknown'
-            });
+        // res.setHeader('Content-Type', 'application/json');
 
-            res.setHeader('Content-Type', 'application/json');
-
-            res.end(JSON.stringify(movies));
-            res.statusCode = 403;
-            console.log(res.statusCode);
-            return
+        res.end(JSON.stringify(movies));
+        res.statusCode = 403;
+        console.log(res.statusCode);
+        return
 
     })
 

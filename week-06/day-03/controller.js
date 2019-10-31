@@ -4,17 +4,6 @@ const http = require('http');
 const url = require('url');
 const PORT = 3000;
 
-const movies = [{
-      id: 12,
-      title: "Forrest Gump",
-      genre: "drama"
-    },
-    {
-      id: 23,
-      name: "Mission Impossible 18",
-      genre: "action"
-}];
-
 
 let server = http.createServer((req, res) => {
     const reqUrl = url.parse(req.url, true);
@@ -30,7 +19,6 @@ let server = http.createServer((req, res) => {
         else if(req.method == 'POST'){
             service.postMovies(res, req);
         }
-        // res.write("error");
     }
     
     else{
@@ -44,8 +32,6 @@ let server = http.createServer((req, res) => {
         else if(req.method == 'PUT'){
             service.putMovieById(res,req);
         }
-
-
     }
     
 
