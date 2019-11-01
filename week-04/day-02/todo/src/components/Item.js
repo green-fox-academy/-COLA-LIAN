@@ -1,66 +1,29 @@
 import React from 'react';
-import OperateItem from './operateItem';
+require ('../App.css');
 
 class Item extends React.Component{
 
     constructor(props){
         super(props);
-    }
-    btnFrame = {
-        width:'100%',
-        height:'60%',
+        this.handleDone= this.handleDone.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
     
-    todoItem = {
-        fontFamily: 'Lato, sans-serif',
-        fontSize: '26px',
-        lineHeight: '2.2',
-        color: '#b8b8b8',
-        width:'80%',
-        margin: 'auto',
-        height:'17%',
-        fontSize: '26px',
-        lineHeight: '2.2',
-        color: '#b8b8b8',
-    };
-    
-    iconFrame = {
-        width:'45px',
-        height:'20px',
-        float: 'right',
-        marginTop: '20px',
+    handleDelete(){
+        this.props.delete(this.props.item.name);
     }
-    
-    iconTrush = {
-        width:'20px',
-        height:'20px',
-        float: 'left',
-    }
-    iconCheck = {
-        width:'20px',
-        height:'20px',
-        float: 'left',
-        marginLeft:'5px',
-        // src='img/trush.png',
-        // src="img/check.png"
-        // display: 'inline-block',
-        backgroundImage: 'url(iconCheck.png)',
-        // backgroundPosition: 'center center',
-        // backgroundSize: '20px 20px',
+
+    handleDone(event){
+        this.props.done(this.props.item.name, event.target.checked)
     }
 
     render(){
         return(
-        <div style={this.btnFrame}> 
-            <div style={this.todoItem}>
-               6666666666{/* {input} */}
-               <OperateItem/>
-            <div style={this.iconFrame}>
-                <i style={this.iconTrush}></i>
-                <i style={this.iconCheck}></i>
-           </div> 
+            <div className="todoItem">
+               <span>{this.props.item.name}</span>
+                <input className="checkBox" type="checkbox" checked={this.props.item.done} onChange={this.handleDone}/>
+                <button className="deleteBtn" onClick={this.handleDelete} ></button>
             </div>
-        </div>
         )
     }
     

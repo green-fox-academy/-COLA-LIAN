@@ -2,21 +2,90 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.background {
+  height:100vh;
+  width:50vw;
+  background-color: rgb(123,223,195);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content:center;
+  align-items: center
+
+}
+.frame {
+  height:80%;
+  width: 75%;
+  /* float:left; */
+  /* margin: 10% 10%; */
+  background-color: rgb(247,247,247)
 }
 
-.App-link {
-  color: #09d3ac;
+.heading {
+  font-family: Lato, sans-serif;
+  font-size: 64px;
+  font-weight: 300;
+  color: #b8b8b8;
+  height: 20%;
+  text-align: center;
+  line-height: 200%;
+}
+.inputFrame {
+  height: 15%;
+  width: 100%;
+}
+.inputFrame2 {
+    height: 50%;
+    width: 80%;
+    margin: auto;
+}
+
+
+.itemFrame {
+  width: 100%;
+  height: 65%;
+}
+
+.btn {
+  font-size: 20px;
+  color: #ffffff;
+  background-color: rgb(208,116,226);
+  width: 15%;
+  height: 100%;
+  float: left;
+}
+.buttonText {
+  width: 80%;
+  height: 85%;
+  float: left; 
+}
+
+.todoItem {
+  font-family: Lato, sans-serif;
+  font-size: 26px;
+  line-height: 2.2;
+  color: #b8b8b8;
+  width: 80%;
+  margin: auto;
+  height:17%;
+  
+}
+.deleteBtn{
+  float: right;
+  margin-top:25px;
+}
+.checkBox{
+  float: right;
+  margin-top:25px;
+  background-image: url(../src/iconCheck.png);
+}
+
+/* Item.js */
+
+.iconCheck {
+  width: 20px;
+  height: 20px;
+  float:  left;
+  margin-left: 5px;
+  background-image: url(iconCheck.png);
+  /* backgroundPosition: 'center center',
+  backgroundSize: '20px 20px', */
 }
