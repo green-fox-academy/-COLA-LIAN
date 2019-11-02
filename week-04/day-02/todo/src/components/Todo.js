@@ -4,7 +4,13 @@ import Item from './Item';
 class Todo extends React.Component{
     constructor(props){
         super(props)
-        this.state = {todo:[{name:'workshop', done:false}]}
+        
+        this.state= {todo:[]};
+        fetch('http://localhost:3000/api/todos', {method:'GET'}).then(response =>{
+            this.setState({todo:response.json()})
+        })
+
+        // this.state = {todo:[{name:'workshop', done:false}]}
         this.add = this.add.bind(this);
         this.delete = this.delete.bind(this);
         this.done = this.done.bind(this);
@@ -13,6 +19,8 @@ class Todo extends React.Component{
     add(){
         let addItem = document.querySelector('.buttonText').value;
         if(addItem.length > 3){
+
+            
             this.setState({todo:[...this.state.todo, {name: addItem, done: false}]});
             document.querySelector('.buttonText').value = '';
         }else{

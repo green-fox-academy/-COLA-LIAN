@@ -1,9 +1,8 @@
-// let service = require('./service');
-
 const express = require('express');
 const app = express();
 app.use(express.json());
-const PORT = 3000;
+// const PORT = 3000;
+let PORT = (process.env.PORT || 3000);
 
 let todos = [
     {
@@ -42,11 +41,9 @@ function findTodo(todoId) {
 }
 
 
-
 app.get('/api/todos', (req, res) => {
     res.send(JSON.stringify(todos));
 })
-
 
 app.post('/api/todos', (req, res) => {
    if(req.body.text){
@@ -82,7 +79,7 @@ app.put('/api/todos/:id', (req, res) => {
         
         res.status(200).send(JSON.stringify(todos));
     }
-       
+
     res.status(404).send("Cannot find the todo item.")   
 })
 
