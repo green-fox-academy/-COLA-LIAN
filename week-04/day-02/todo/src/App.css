@@ -17,6 +17,7 @@
   /* float:left; */
   /* margin: 10% 10%; */
   background-color: rgb(247,247,247)
+  
 }
 
 .heading {
@@ -85,7 +86,7 @@
   height: 20px;
   float:  left;
   margin-left: 5px;
-  background-image: url(iconCheck.png);
+  background-image: url(../src/iconTrash.png);
   /* backgroundPosition: 'center center',
   backgroundSize: '20px 20px', */
 }

@@ -31,9 +31,6 @@ function factorUntil(number){
 // factorUntil(5);
 
 
-
-
-
 //doubling
 app.get('/doubling', (req, res) => {
     const { query } = req;
@@ -112,3 +109,11 @@ app.post('/dountil/:action', (req, res) => {
 app.listen(PORT, () => {
     console.log(`The server is up and running on ${PORT}`);
   });
+
+
+
+res.send(newBuffer('whoop'));
+res.send({some:'json'});
+res.send('<p>some html</p>');
+res.status(404).send('Sorry, we cannot find that!');
+res.status(500).send({ error: 'something blew up' });
