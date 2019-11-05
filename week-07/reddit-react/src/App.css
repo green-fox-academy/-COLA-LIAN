@@ -1,22 +1,128 @@
-.App {
-  text-align: center;
+.bar{
+  height: 70vh;
+  float: left;
+  display: flex;
+  justify-content:center; 
+  align-items:center;
+  background-color: #eeeeee;
 }
 
-.App-logo {
-  height: 40vmin;
+/* home */
+.bgd{
+  height: 100vh;
+  width: 100vw; 
+}
+.header{
+  height: 30vh;
+  width: 100vw;
+  display: flex;
+  justify-content:space-around;
+  letter-spacing: 200px;
+  background-image: url('./space.png');
+  background-size: 100% 100%;
+  font-size: 300%;
+  color: #ffffff;
+  /* display: flex;
+  justify-content:center; 
+  align-items:center; */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+/* articleBar */
+#articalBar{
+  width: 60vw;
+}
+.articalFrame{
+  height: 65vh;
+  width: 58vw;
+  background-color: #ffffff;
+}
+
+/* listArtItem */
+.artical{
+  background-color: pink;
+  width: 100%;
+  height: 20%;
+  float: left;
+}
+.arrowArea{
+  height: 100%;
+  width: 10%;
+  background-color: powderblue;
+  float: left;
+}
+.listBtn{
+  height: 20%;
+  width: 8%;
+  border-radius: 10px;
+  background-color: rgb(95,163,218);
+}
+
+
+
+/* sideBar */
+#sideBar{
+  width: 40vw;
+}
+.sideFrame{
+  height: 65vh;
+  width: 38vw;
+}
+.submitBtn{
+  height: 10%;
+  width:100%;
+  background-color: rgb(95,163,218);
+  font-size: 150%;
+  color: #ffffff;
+}
+.side{
+  width:100%;
+}
+
+#BarContent{
+  height: 70%;
+  /* width:100%; */
+  position: relative;;
+  top: 20px;
+}
+#CoHeader{
+  height: 20%;
+  /* width: 100%; */
+  background-color:  #ffffff;
+}
+#CoBody{
+  height: 80%;
+  /* width: 100%; */
+  background-color: #f5f5f5;
+}
+
+
+/* submit */
+.submitBar{
+  width: 35%;
+  height: 50vh;
+  float: left;
+  background-color: #eeeeee;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content:center; 
+  align-items:center;
 }
-
-.App-link {
-  color: #09d3ac;
+.submitFrame{
+  width: 90%;
+  height: 50%;
+  background-color: #ffffff;
+}
+input{
+  width: 80%;
+  height: 40%;
+}
+label{
+  font-size: 100%;
+}
+#smallSmitBtn{
+  position: relative;
+  top: 15px;
+  width: 30%;
+  font-size: 20px;
 }

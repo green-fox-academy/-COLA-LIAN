@@ -22,7 +22,7 @@ app.get('/posts', (req, res) => {
         }
 
         res.setHeader("Content-Type", "application/json");
-        res.status(200).send({ Infos:result });
+        res.status(200).send({ posts:result });
     })
 });
 
