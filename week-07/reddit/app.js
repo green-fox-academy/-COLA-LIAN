@@ -1,9 +1,12 @@
 const express = require('express');
 const mysql = require('mysql');
+const cors = require('cors');
 const app = express();
 
-let PORT = (process.env.PORT || 3002);
+
+let PORT = (process.env.PORT || 3006);
 app.use(express.json());//解析post方式下的json参数
+app.use(cors());
 
 const connection = mysql.createConnection({
     host:'localhost',
@@ -18,11 +21,11 @@ app.get('/posts', (req, res) => {
     connection.query(sqlString, (error, result) => {
         if(error){
             console.log(error.message);
+            res.status(500).send('error on db')
             return;
         }
 
-        res.setHeader("Content-Type", "application/json");
-        res.status(200).send({ posts:result });
+        res.status(200).json({posts:result});
     })
 });
 

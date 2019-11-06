@@ -1,15 +1,20 @@
 import '../App.css';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import ListArtItem from './listArtItem';
+import {listAction} from  '../redux/actions'
 
-const mapStateToProps = ({list}) => ({ list });
+const mapStateToProps = ({lists}) => ({lists})
+const mapDispatchToProps = (dispatch) => ({getList: () => dispatch(listAction())})
 
-export default connect(mapStateToProps)(function({list}) {
+export default connect(mapStateToProps, mapDispatchToProps)(function({lists, getList}) {
+
+  useEffect(() => getList(), []);
+
     return (
-      <div className="listitem">
-      {list.map(item => <ListArtItem item={artical} />)}
+      <div >
+          {lists.map(item => <ListArtItem artical={item} />)}
       </div>
     )
 })
-
+ 
