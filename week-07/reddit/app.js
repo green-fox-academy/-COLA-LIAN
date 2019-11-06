@@ -66,6 +66,7 @@ app.put('/posts/:id/upvote', async (req, res) => {
     let upId = req.params.id;
     const sqlUpdate = `UPDATE artical_info set score=score+1 WHERE id=${upId}`;
     const sqlSelect = `SELECT * FROM artical_info WHERE id=${upId}`;
+    // const sqlSelect = `SELECT * FROM artical_info`;
 
     await connection.query(sqlUpdate);
 
@@ -74,8 +75,8 @@ app.put('/posts/:id/upvote', async (req, res) => {
             res.send(500).send(error.message);
             return;
         }
-        res.setHeader("Content-Type", "application/json"); 
-        res.status(200).send({downItem:result});
+        // res.setHeader("Content-Type", "application/json"); 
+        res.status(200).send(result);
 
     })
 
@@ -94,7 +95,7 @@ app.put('/posts/:id/downvote', async (req, res) => {
             return;
         }
         res.setHeader("Content-Type", "application/json"); 
-        res.status(200).send({downItem:result});
+        res.status(200).send(result);
 
     })
 
