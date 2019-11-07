@@ -3,14 +3,13 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import ListArtItem from './listArtItem';
 import {listAction} from  '../redux/actions'
-// import {upVoteAction} from  '../redux/actions'
 
 function ListItems ({lists, getList}) {
   
   useEffect(() =>{ getList()}, []);
   
   return (
-    <div >
+    <div className="articalFrame">
           {lists.map(item => <ListArtItem article={item} />)}
       </div>
     )
@@ -19,6 +18,6 @@ function ListItems ({lists, getList}) {
   const mapStateToProps = ({lists}) => ({lists})
   const mapDispatchToProps = (dispatch) => ({
     getList: () => dispatch(listAction())
-    // upVote: () => dispatch(upVoteAction())
   })
-  export default connect(mapStateToProps, mapDispatchToProps)(ListItems)
+  
+export default connect(mapStateToProps, mapDispatchToProps)(ListItems)

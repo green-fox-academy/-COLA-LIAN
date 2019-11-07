@@ -15,6 +15,12 @@ const connection = mysql.createConnection({
     database:'reddit',
 });
 
+const getLocalTime = (nS) => { 
+    return new Date(parseInt(nS)).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " "); 
+} 
+
+
+
 app.get('/posts', (req, res) => {
     const sqlString = `SELECT * FROM artical_info`;
 
@@ -24,18 +30,17 @@ app.get('/posts', (req, res) => {
             res.status(500).send('error on db')
             return;
         }
-
         res.status(200).json({posts:result});
     })
 });
-
 
 
 app.post('/posts', (req, res) => {
     let title = req.body.title;
     let url = req.body.url;
     let score = 0;
-    let timestamp = Date.now();
+    let timestamp = new Date().getTime();
+    let time = getLocalTime(timestamp);
 
     const sqlString = `INSERT INTO artical_info 
     (timestamp, score,  title, url)
@@ -46,15 +51,13 @@ app.post('/posts', (req, res) => {
             console.log(error.message);
             return;
         }
-
-        res.setHeader("Content-Type", "application/json"); 
-        // res.send(result);
-        res.status(201).send(
+        
+        res.status(201).json(
             {addItem:{
                 id: result.insertId,
-                title:title,
-                url:url,
-                timestamp: timestamp,
+                title: title,
+                url: url,
+                timestamp: time,
                 score: score
             }
         });
@@ -66,7 +69,6 @@ app.put('/posts/:id/upvote', async (req, res) => {
     let upId = req.params.id;
     const sqlUpdate = `UPDATE artical_info set score=score+1 WHERE id=${upId}`;
     const sqlSelect = `SELECT * FROM artical_info WHERE id=${upId}`;
-    // const sqlSelect = `SELECT * FROM artical_info`;
 
     await connection.query(sqlUpdate);
 
@@ -79,7 +81,6 @@ app.put('/posts/:id/upvote', async (req, res) => {
         res.status(200).send(result);
 
     })
-
 });
 
 app.put('/posts/:id/downvote', async (req, res) => {
@@ -96,9 +97,7 @@ app.put('/posts/:id/downvote', async (req, res) => {
         }
         res.setHeader("Content-Type", "application/json"); 
         res.status(200).send(result);
-
     })
-
 });
 
 app.listen(PORT);

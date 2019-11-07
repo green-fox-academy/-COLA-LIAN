@@ -5,19 +5,21 @@ import {upVoteAction} from  '../redux/actions'
 import {downVoteAction} from  '../redux/actions'
 
 
+function ListArtItem({ article, upVote, downVote }){
 
-// export default 
-
-function ListArtItem({ article, upVote, downVote}){
-
-    
     const handleUpVote = () => {
-        console.log('clicked');
+        let up = document.querySelector('.up');
+        up.className = "uped";
         upVote(article.id);
+        setTimeout(() => {up.className = "up"}, 1000);
     }
 
     const handleDownVote = () => {
+        let down = document.querySelector('.down');
+
+        down.className = "downed";
         downVote(article.id);
+        setTimeout(() => {down.className = "down"}, 1000);
     }
 
     return (         
@@ -27,15 +29,25 @@ function ListArtItem({ article, upVote, downVote}){
                 <div className="vote" id="up">
                    <div className='up' onClick={handleUpVote} ></div> 
                 </div>
-                <div className="score">{article.score}</div>
+                <div className="score">{article.score} </div>
                 <div className="vote" id="down">
                     <div className='down' onClick={handleDownVote}></div> 
                 </div>
             </div>
 
-            <h2> title:{article.title} </h2>
-            <button className="listBtn">Modify</button>
-            <button className="listBtn">Remove</button>
+            <div className="operateArea"> 
+
+                
+                <h3> {article.title} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Author:anonymous</small></h3> 
+
+                <small>Published Time: {article.timestamp}</small>
+                {/* <strong>Published Time: {article.timestamp}</strong> */}
+                <br/>
+                <br/>
+                <button className="listBtn">Modify</button>
+                <button className="listBtn">Remove</button>
+            </div>
+
         </div>
     );
 }

@@ -1,20 +1,24 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 
 import Header from './components/header';
-import ArticalBar from './components/articalBar';
-import SideBar from './components/sideBar';
+// import ArticalBar from './components/articalBar';
+// import SideBar from './components/sideBar';
 import Submit from './components/submit';
+import Home from './components/home';
 
 function App() {
   return (
-    <div className="bgd">
-      <Header/>
-      <ArticalBar/>
-      <SideBar/> 
-
-      {/* <Submit /> */}
-    </div>
+    <Router>
+      <div className="bgd">
+        <Header/>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path="/newSubmit" component={Submit} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
