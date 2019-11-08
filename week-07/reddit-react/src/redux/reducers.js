@@ -6,7 +6,6 @@ import {SUBMIT} from './actions'
 
 const initState = {
     lists: [],
-
 }
 
 export default function(state = initState, action){

@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 
 import Header from './components/header';
-// import ArticalBar from './components/articalBar';
-// import SideBar from './components/sideBar';
 import Submit from './components/submit';
 import Home from './components/home';
 
